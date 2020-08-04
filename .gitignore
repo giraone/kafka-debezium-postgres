@@ -1,0 +1,5 @@
+# Project specific
+data/
+
+# OS stuff
+*.swp
