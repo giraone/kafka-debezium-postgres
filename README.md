@@ -19,12 +19,12 @@
 
 ## Docker Setup
 
-See [docker-compose.yml](docker-compose.yml).
+See [docker-compose.yml](kafka-debezium-postgres-5.5-11/docker-compose.yml).
 
-- Run [volumes-setup.sh](volumes-setup.sh).
+- Run [volumes-setup.sh](kafka-debezium-postgres-5.5-11/volumes-setup.sh).
 - Run `docker-compose up -d`
 - Check logs, e.g. `docker logs connect`
-- In case of a reset, run `sudo volumes-clean.sh` - See [volumes-clean.sh](volumes-clean.sh).
+- In case of a reset, run `sudo volumes-clean.sh` - See [volumes-clean.sh](kafka-debezium-postgres-5.5-11/volumes-clean.sh).
 
 ## Setup Debezium Connectors with Kafka Connect
 
@@ -85,7 +85,7 @@ root@connect:/usr/share/confluent-hub-components# mv debezium-debezium-connector
 root@connect:/usr/share/confluent-hub-components# rm -rf debezium-debezium-connector-postgresql
 ```
 
-Now you have to add `/usr/share/confluent-hub-components/debezium-debezium-connector-postgresql` to the `CONNECT_PLUGIN_PATH` environment variable in [docker-compose.yml](docker-compose.yml) and restart the *connect* container.
+Now you have to add `/usr/share/confluent-hub-components/debezium-debezium-connector-postgresql` to the `CONNECT_PLUGIN_PATH` environment variable in [docker-compose.yml](kafka-debezium-postgres-5.5-11/docker-compose.yml) and restart the *connect* container.
 
 ### Check that connector can be used:
 
