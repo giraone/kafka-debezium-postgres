@@ -11,4 +11,5 @@ mkdir -p data/connect/plugins
 mkdir -p data/tools
 
 mkdir -p data/postgres-source/data
+mkdir -p data/postgres-target/data
 mkdir -p data/pgadmin4

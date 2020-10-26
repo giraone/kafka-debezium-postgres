@@ -10,4 +10,5 @@ rm -rf data/connect/data/*
 rm -rf data/tools/data/*
 
 rm -rf data/postgres-source
+rm -rf data/postgres-target
 rm -rf data/pgadmin4
