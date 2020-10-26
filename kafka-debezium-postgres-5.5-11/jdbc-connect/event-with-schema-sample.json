@@ -1,0 +1,31 @@
+{
+    "schema": {
+        "type": "struct",
+        "fields": [
+            {
+                "type": "string",
+                "optional": false,
+                "field": "name"
+            },
+            {
+                "type": "string",
+                "optional": true,
+                "field": "email"
+            },
+            {
+                "type": "int64",
+                "optional": false,
+                "name": "org.apache.kafka.connect.data.Timestamp",
+                "version": 1,
+                "field": "modified"
+            }
+        ],
+        "optional": false,
+        "name": "student"
+    },
+    "payload": {
+        "name": "Jack",
+        "email": "jack@gmail.com",
+        "modified": 1603692012438
+    }
+}
