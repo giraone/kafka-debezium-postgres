@@ -34,6 +34,12 @@ INSERT INTO public.student(NAME, EMAIL) VALUES('Jack','jack@gmail.com');
 INSERT INTO public.student(NAME, EMAIL) VALUES('Jim','jim@gmail.com');
 INSERT INTO public.student(NAME, EMAIL) VALUES('Peter','peter@gmail.com');
 
+INSERT INTO public.student(NAME, EMAIL) VALUES('Jack','-');
+INSERT INTO public.student(NAME, EMAIL) VALUES('Jim','-');
+INSERT INTO public.student(NAME, EMAIL) VALUES('Peter','-');
+
+SELECT * FROM public.student;
+
 INSERT INTO public.outbox VALUES('00000001-dead-cafe-ffff-111111111111', 'student', 1, 0, 'Jack', '{ "name": "Jack", "email": "jack@gmail.com" }');
 INSERT INTO public.outbox VALUES('00000002-dead-cafe-ffff-111111111111', 'student', 1, 0, 'Jim', '{ "name": "Jim", "email": "jim@gmail.com" }');
 INSERT INTO public.outbox VALUES('00000003-dead-cafe-ffff-111111111111', 'student', 1, 0, 'Peter', '{ "name": "Peter", "email": "peter@gmail.com" }');
