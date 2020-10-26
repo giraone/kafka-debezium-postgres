@@ -1,0 +1,26 @@
+{
+  "name": "jdbc-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+
+    "connection.url": "jdbc:postgresql://postgres-target:5432/user",
+    "connection.user": "user",
+    "connection.password": "password",
+
+    "value.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false",
+
+    "topics": "bulk.student2",
+
+    "insert.mode": "update",
+    "batch.size": "1",
+    "pk.mode": "record_key",
+
+    "table.name.format": "student",
+    "pk.fields": "name",
+    "fields.whitelist": "name,email"
+  }
+}

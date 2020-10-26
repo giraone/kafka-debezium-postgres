@@ -1,0 +1,31 @@
+{
+  "name": "jdbc-source",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": "1",
+    "poll.interval.ms": 100000000,
+    
+    "connection.url": "jdbc:postgresql://postgres-source:5432/user",
+    "connection.user": "user",
+    "connection.password": "password",
+
+    "value.converter":"org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false",
+
+    "mode": "bulk",
+    "schema.pattern": "public",
+    "table.whitelist": "student",
+
+    "transforms": "dropTopicPrefix,valueToKey,extractKey",
+    "topic.prefix": "prefix-",
+    "transforms.dropTopicPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.dropTopicPrefix.regex": "prefix-(.*)",
+    "transforms.dropTopicPrefix.replacement": "bulk.student2",
+    "transforms.valueToKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.valueToKey.fields": "name",
+    "transforms.extractKey.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+    "transforms.extractKey.field": "name"
+  }
+}
