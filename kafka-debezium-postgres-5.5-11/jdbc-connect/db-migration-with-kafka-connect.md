@@ -1,8 +1,8 @@
 # Database migration with Kafka Connect
 
 
-This is a proof-of-concept, how one can migration database values from one datebase to another using Kafka Connect and
-its JDBC source and sink connector. The basic use-case is e.g. migrating a value from one microservice database to
+This is a proof-of-concept, how one can migrate database values from one database to another using Kafka Connect and
+its JDBC source and sink connector as a ETL tool. The basic use-case is migrating values from one microservice database to
 another microservice database without writing much code.
 
 ## Setup
@@ -29,7 +29,7 @@ INSERT INTO public.student(NAME, EMAIL) VALUES('Jim','jim@gmail.com');
 INSERT INTO public.student(NAME, EMAIL) VALUES('Peter','peter@gmail.com');
 ```
 
-The result is
+The resulting table content using `SELECT * FROM public.student` is
 
 ```csv
 "name","email","modified"
@@ -38,7 +38,7 @@ The result is
 "Peter","peter@gmail.com","2020-10-26 06:00:12.438413+00"
 ```
 
-The target database is filled with:
+The target database is filled with record that have the same primary key (`name`) and an empty `email` column:
 
 ```sql
 INSERT INTO public.student(NAME, EMAIL) VALUES('Jack','-');
@@ -46,7 +46,7 @@ INSERT INTO public.student(NAME, EMAIL) VALUES('Jim','-');
 INSERT INTO public.student(NAME, EMAIL) VALUES('Peter','-');
 ```
 
-The result is
+The resulting table content using `SELECT * FROM public.student` is
 
 ```csv
 "name","email","modified"
@@ -55,7 +55,7 @@ The result is
 "Peter","-","2020-10-26 06:02:21.073101+00"
 ```
 
-The goal is, that after a migration, the column values for `email` are transferred from the source to the target database
+The goal is, that after a migration, all column values for `email` are transferred from the source to the target database
 without changing other column values:
 
 ```csv
