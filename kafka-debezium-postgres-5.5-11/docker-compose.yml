@@ -156,6 +156,22 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
 
+  # PostgreSQL database as target
+  postgres-target:
+    image: debezium/postgres:11
+    hostname: postgres-target
+    container_name: postgres-target
+    volumes:
+      - ./data/postgres-target/data:/var/lib/postgresql/data
+    networks: 
+      - confluent
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_DB=user
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+
   pgadmin4:
     image: dpage/pgadmin4:4.24
     hostname: pgadmin4
