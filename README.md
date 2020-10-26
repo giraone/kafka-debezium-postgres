@@ -90,13 +90,13 @@ Now you have to add `/usr/share/confluent-hub-components/debezium-debezium-conne
 ### Check that connector can be used:
 
 ```
-curl -X GET -H "Accept: application/json" "http://localhost:8083/connector-plugins | jq
+curl -X GET -H "Accept: application/json" "http://localhost:8083/connector-plugins" | jq
 ```
 
 ## Setup
 
 ```
-curl -X GET -H "Accept: application/json" "http://localhost:8083/connector-plugins
+curl -X GET -H "Accept: application/json" "http://localhost:8083/connector-plugins"
 [
  {"class":"io.debezium.connector.postgresql.PostgresConnector","type":"source","version":"1.0.0.Final"},
  {"class":"org.apache.kafka.connect.file.FileStreamSinkConnector","type":"sink","version":"5.3.1-ccs"},
@@ -145,7 +145,7 @@ curl -X PUT localhost:8083/connectors/source-postgres-outbox/resume
 ```
 docker-compose exec tools /bin/bash
 kafka-topics --bootstrap-server kafka-1:9092 --list
-kafka-topics --bootstrap-server kafka-1:9092 --create --replication-factor 1 --partitions 8 --topic private.test.pws.loon.student
+kafka-topics --bootstrap-server kafka-1:9092 --create --replication-factor 1 --partitions 8 --topic private.test.pws.loon.outbox
 
 docker-compose exec postgres-source bash -c 'psql -d user -U user'
 
@@ -153,7 +153,7 @@ kafka-console-consumer \
     --bootstrap-server kafka-1:9092 \
     --from-beginning \
     --property print.key=true \
-    --topic private.test.pws.loon.student
+    --topic private.test.pws.loon.outbox
 
 ### Output
 
